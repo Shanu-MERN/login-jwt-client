@@ -11,6 +11,24 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    fetch("http://localhost:6969/api/v1/signup", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        firstName: formData.firstname,
+        lastName: formData.lastname,
+        email: formData.email,
+        password: formData.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
